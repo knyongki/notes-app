@@ -6,9 +6,9 @@ const NotFoundError = require('../../exceptions/NotFoundError');
 const AuthorizationError = require('../../exceptions/AuthorizationError');
 
 class NotesService {
-  constructor(collaborationService) {
+  constructor(collaborationsService) {
     this._pool = new Pool();
-    this._collaborationService = collaborationService;
+    this._collaborationsService = collaborationsService;
   }
 
   async addNote({
@@ -110,7 +110,7 @@ class NotesService {
       }
 
       try {
-        await this._collaborationService.verifyCollaboratior(noteId, userId);
+        await this._collaborationsService.verifyCollaborator(noteId, userId);
       } catch {
         throw error;
       }
